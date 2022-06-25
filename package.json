@@ -8,24 +8,26 @@
   "scripts": {
     "build": "rollup -c"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hungdev/react-cee-form.git"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "homepage": "https://github.com/hungdev/react-cee-form#readme",
+  "bugs": {
+    "url": "https://github.com/hungdev/react-cee-form/issues"
   },
+  "author": "<hungns126@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "validation",
+    "form",
+    "hooks",
+    "react-hooks",
+    "react",
+    "react-native",
+    "form-validation",
+    "forms"
+  ],
   "devDependencies": {
     "@babel/core": "^7.18.5",
     "@babel/preset-react": "^7.17.12",
