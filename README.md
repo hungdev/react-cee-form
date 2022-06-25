@@ -15,8 +15,7 @@ Don't hesitate to give me a star.
 ## Usage:
 ```
 import React, { useState } from 'react';
-import useForm from './Form';
-import Field from './Field';
+import { useForm, Field, joiResolver } from 'react-cee-form';
 import Input from './Input';
 import { joiResolver } from './utils';
 
