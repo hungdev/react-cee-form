@@ -5,6 +5,8 @@ it can be used for both react native and reactjs.
 
 Don't hesitate to give me a star.
 
+[Online Demo codesandbox](https://codesandbox.io/s/react-cee-form-example-6b3x29?file=/src/App.js)
+
 ## Why don't use react-hook-form
 I had some problems in react-hook-form and I couldn't handle it, and I decided to write my own. The library is in its basic form, simple and has the same basic features as the hook-form side.
 I'm just referencing the props name so that I don't have to think about naming and to be able to think of the cases this library needs to handle. But I don't use their code.
@@ -17,7 +19,6 @@ Don't hesitate to give me a star.
 import React, { useState } from 'react';
 import { useForm, Field, joiResolver } from 'react-cee-form';
 import Input from './Input';
-import { joiResolver } from './utils';
 
 const schema = Joi.object({
   userName: Joi.string()
