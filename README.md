@@ -1,5 +1,5 @@
 # React Cee Form
-Inspired by react hook form and props name and rewritten in a simple way.
+Inspired by react hook form and their props name and rewritten in a simple way.
 
 It can be used for both React Native and ReactJs.
 
