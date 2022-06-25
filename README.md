@@ -302,7 +302,8 @@ trigger to validate one or more fields
 trigger([fieldName, ...])
 ```
 
-#### handleSubmit: handle the submit event, it needs to wrap onClick event of the submit button.
+#### handleSubmit: 
+handle the submit event, it needs to wrap onClick event of the submit button.
 
 ```
 const onSubmit = (values) => {
