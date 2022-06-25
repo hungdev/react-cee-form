@@ -1,38 +1,63 @@
+
 export const validateField = (name, val, rules) => {
   let error = null;
+  // required
   if (rules?.required) {
-    error = !val && `Field ${name} is required`;
+    let condition = rules?.required?.value || rules?.required;
+    let message = rules?.required?.message || `Field ${name} is required`;
+    error = !val && condition && message;
   }
 
+  // pattern
   if (rules?.pattern) {
-    error = !rules?.pattern.test(val) && `Field ${name} is invalid`;
+    let condition = rules?.pattern?.value || rules?.pattern;
+    let message = rules?.pattern?.message || `Field ${name} is invalid`;
+    error = val && !condition.test(val) && message;
   }
 
+  // min & max
   if (!error && rules?.min && rules?.max) {
-    error = (Number(val) < rules?.min || Number(val) > rules?.max) && `Field ${name} must be between ${rules?.min} and ${rules?.max}`;
+    let minCondition = rules?.min?.value || rules?.min;
+    let maxCondition = rules?.max?.value || rules?.max;
+    error = (Number(val) < minCondition || Number(val) > maxCondition) && `Field ${name} must be between ${minCondition} and ${maxCondition}`;
   }
 
+  // min
   if (!error && rules?.min) {
-    error = Number(val) < rules?.min && `Field ${name} is too short`;
+    let condition = rules?.min?.value || rules?.min;
+    let message = rules?.min?.message || `Field ${name} is smaller than ${condition}`;
+    error = val && Number(val) < condition && message;
   }
 
+  // max
   if (!error && rules?.max) {
-    error = Number(val) > rules?.max && `Field ${name} is too long`;
+    let condition = rules?.max?.value || rules?.max;
+    let message = rules?.max?.message || `Field ${name} is higher than ${condition}`;
+    error = val && Number(val) > condition && message;
   }
 
+  // minLength & maxLength
   if (!error && rules?.minLength && rules?.maxLength) {
-    error = (val?.length < rules?.minLength || val?.length > rules?.maxLength) && `Field ${name} must be between ${rules?.minLength} and ${rules?.maxLength}`;
+    let minLengthCondition = rules?.minLength?.value || rules?.minLength;
+    let maxLengthCondition = rules?.maxLength?.value || rules?.maxLength;
+    error = (val?.length < minLengthCondition || val?.length > maxLengthCondition) && `Field ${name} must be between ${minLengthCondition} and ${maxLengthCondition}`;
   }
 
+  // minLength
   if (!error && rules?.minLength) {
-    error = val?.length < rules?.minLength && `Field ${name} is too short`;
+    let condition = rules?.minLength?.value || rules?.minLength;
+    let message = rules?.minLength?.message || `Field ${name} is too short`;
+    error = val?.length < condition && message;
   }
 
+  // maxLength
   if (!error && rules?.maxLength) {
-    error = val?.length > rules?.maxLength && `Field ${name} is too long`;
+    let condition = rules?.maxLength?.value || rules?.maxLength;
+    let message = rules?.maxLength?.message || `Field ${name} is too long`;
+    error = val?.length > condition && message;
   }
 
-
+  // validate
   if (!error && rules?.validate) {
     error = rules?.validate?.(val);
   }
