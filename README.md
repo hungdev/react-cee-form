@@ -131,8 +131,9 @@ useForm({
 
 ### Field
 Field is a component that manages the form control. It wraps the component and the error message.
+
 For react native need it to control your component.
-The Field component is a wrapper of the component you want to wrap.
+
 It has some props:
 - name: the name of the field. The form will use this name to set the value to the form control.
 - control: the control object that manages the form state and the form control
@@ -151,7 +152,7 @@ Children is a function that returns the component. It receives the props:
 - onChange: function that handles the change event, it sets value to the form control.
 - value: the value of the component.
 - name: the name of the component.
-- onBlur: function that handles the blur event, it validate the component.
+- onBlur: function that handles the blur event, it validates the component.
 
 > 
 
@@ -232,65 +233,76 @@ const control = useForm({ validationSchema: joiResolver(schema) });
 const { errors, handleSubmit, setValue, values, register, ...restProps } = useForm();
 ```
 
-- register: register the field to the form control
+#### register: 
+register the field to the form control
 
 ```
 register(fieldName, fieldRules, defaultValue)
 ```
 
-- unRegister: unRegister the field from the form control
+#### unRegister: 
+unRegister the field from the form control
 
 ```
 unRegister(fieldName)
 ```
 
-- setValue: set the value of the field
+#### setValue: 
+set the value of the field
 
 ```
 setValue(fieldName, value, conditions = { shouldValidate: true })
 ```
 
-- values: the values of the form
+#### values: 
+the values of the form
 
-- getValues: get the values of the form
+#### getValues: 
+get the values of the form
 
 ```
 getValues(fieldName)
 ```
 
-- errors: the errors of the form
+#### errors: 
+the errors of the form
 
-- setError: set the errors of the form
+#### setError: 
+set the errors of the form
 
 ```
 setError(fieldName, error)
 ```
 
-- getError: get the errors of the form
+#### getError: 
+get the errors of the form
 
 ```
 getError(fieldName)
 ```
 
-- clearError: clear the errors of the form
+#### clearError: 
+clear the errors of the form
 
 ```
 clearError(fieldName)
 ```
 
-- reset: reset the form
+#### reset: 
+reset the form
 
 ```
 reset({fieldName: value, ...})
 ```
 
-- trigger: trigger to validate one or more fields
+#### trigger: 
+trigger to validate one or more fields
 
 ```
 trigger([fieldName, ...])
 ```
 
-- handleSubmit: handle the submit event, it needs to wrap onClick event of the submit button.
+#### handleSubmit: handle the submit event, it needs to wrap onClick event of the submit button.
 
 ```
 const onSubmit = (values) => {
