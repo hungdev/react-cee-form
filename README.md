@@ -3,7 +3,7 @@ Inspired by react hook form and their props name and rewritten in a simple way.
 
 It can be used for both React Native and ReactJs.
 
-Don't hesitate to give me a star.
+> Don't hesitate to give me a star.
 
 [Online Demo codesandbox ReactJs](https://codesandbox.io/s/react-cee-form-example-6b3x29)
 
@@ -283,3 +283,6 @@ const onSubmit = (values) => {
 
 handleSubmit(onSubmit)
 ```
+
+### Pull request
+Pull requests are welcome!
