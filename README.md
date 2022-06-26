@@ -5,7 +5,9 @@ It can be used for both React Native and ReactJs.
 
 Don't hesitate to give me a star.
 
-[Online Demo codesandbox](https://codesandbox.io/s/react-cee-form-example-6b3x29?file=/src/App.js)
+[Online Demo codesandbox ReactJs](https://codesandbox.io/s/react-cee-form-example-6b3x29)
+
+[Online Demo Snack Expo React Native](https://snack.expo.dev/@hungdev/react-cee-form-example)
 
 ## Why don't use react-hook-form
 I had some problems in react-hook-form and I couldn't handle it, and I decided to write my own. The library is in its basic form, simple and has the same basic features as the hook-form side.
