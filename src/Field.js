@@ -8,8 +8,8 @@ export default function Field({ control, name, rules, children, defaultValue }) 
   }, []);
 
   const value = control?.values?.[name];
-  const onChange = control?.onChange(name, rules);
-  const onBlur = control?.onBlur(name, rules);
+  const onChange = control?.onChange?.(name, rules);
+  const onBlur = control?.onBlur?.(name, rules);
   return (
     <Fragment>
       {children?.({ onChange, value, name, onBlur })}
