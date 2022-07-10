@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
-import { removeEmpty, omit, omitSingle } from './utils';
+import { omit, removeFalseObj } from './utils';
 import { validateField } from './Validate';
-
-//https://replit.com/@hungdev/joi-v17#index.js
 
 export default function Controller({ validationSchema, defaultValues = {} } = {}) {
   const [values, setValues] = useState(defaultValues);
   const [rules, setRules] = useState({});
   const [errors, setErrors] = useState({});
 
-
   const register = (name, fieldRules, defaultValue) => {
-    !values?.hasOwnProperty(name) && setValues(prev => ({ ...prev, [name]: defaultValue }));
+    !values?.hasOwnProperty(name) && setValues((prev) => ({ ...prev, ...!prev?.hasOwnProperty(name) && { [name]: defaultValue } }));
     !rules?.hasOwnProperty(name) && setRules(prev => ({ ...prev, [name]: fieldRules || {} }));
 
     return ({
@@ -26,17 +23,17 @@ export default function Controller({ validationSchema, defaultValues = {} } = {}
       setValues(({ name, ...prev }) => ({ ...prev }));
     }
     if (Array.isArray(name)) {
-      setValues(prev => omit(prev, name));
+      setValues((prev) => omit(prev, name));
     }
   };
 
 
   const onValidate = (name, val, fieldRules) => {
     const error = validationSchema ? validationSchema?.resolve({ [name]: val })?.getFilteredErrors(name) : validateField(name, val, fieldRules);
-    setErrors(prev => removeEmpty({ ...prev, [name]: error }));
+    setErrors(prev => removeFalseObj({ ...prev, [name]: error }));
   };
 
-  const onChange = (name, fieldRules) => (value) => onChangeField(name, fieldRules, value);
+  const onChangeValue = (name, fieldRules) => (value) => onChangeField(name, fieldRules, value);
 
   const onChangeField = (name, fieldRules, value) => {
     setValues(prev => ({
@@ -57,10 +54,23 @@ export default function Controller({ validationSchema, defaultValues = {} } = {}
 
   const getValues = (name) => name ? values?.[name] : values;
 
+  const getValidationAllFields = () => {
+    const errorsObj = Object.keys(values).reduce((acc, name) => {
+      const error = validationSchema ? validationSchema?.resolve({ [name]: values[name] })?.getFilteredErrors(name) : validateField(name, values[name], rules[name]);
+      return { ...acc, [name]: error };
+    }, {});
+
+    return Object.keys(removeFalseObj(errorsObj))?.length;
+  };
+
   const handleSubmit = (cb) => () => {
     Object.keys(values).forEach(name => {
       onValidate(name, values[name], rules[name]);
     });
+
+    if (getValidationAllFields()) {
+      return;
+    }
 
     if (Object.values(errors).every(v => !v)) {
       cb(values);
@@ -98,6 +108,6 @@ export default function Controller({ validationSchema, defaultValues = {} } = {}
     values, setValue, getValues,
     errors, setErrors, setError, getError, clearError,
     reset, trigger,
-    onChange, onBlur: onChange, handleSubmit,
+    onChangeValue, onBlur: onChangeValue, handleSubmit,
   });
 };
